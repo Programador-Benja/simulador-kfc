@@ -5,8 +5,21 @@ const totalCompra = document.getElementById("total-dinero");
 const vaciarCarrito = document.getElementById("vaciar-carrito");
 
 vaciarCarrito.addEventListener("click", () => {
-    carrito.length = 0
-    actualizarCarrito()
+    Swal.fire({
+        title: "Estas seguro que deseas vaciar el carrito",
+        text: "Va a eliminar todos los combos del carrito",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "red",
+        cancelButtonColor: "black",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            carrito.length = 0
+            actualizarCarrito()
+        }
+    })
 })
 
 let carrito = [];
