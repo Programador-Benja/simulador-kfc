@@ -1,0 +1,19 @@
+.tarjeta{
+    margin: auto;
+    width: 400px;
+}
+.catalogo-img{
+    width: 100%;
+    height: 400px;
+}
+.dis-flex{
+    display: inline-flex;
+    margin: 20px 2px;
+}
+.dis-flex p, .dis-flex span{
+    display: flex;
+    margin: auto 4px;
+}
+#catalogo-combos{
+    text-align: center;
+}
