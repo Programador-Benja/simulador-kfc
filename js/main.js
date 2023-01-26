@@ -13,7 +13,13 @@ vaciarCarrito.addEventListener("click", () => {
         confirmButtonColor: "red",
         cancelButtonColor: "black",
         confirmButtonText: "Eliminar",
-        cancelButtonText: "Cancelar"
+        cancelButtonText: "Cancelar",
+        showClass: {
+            popup: "animate__animated animate__bounceIn"
+        },
+        hideClass: {
+            popup: "animate__animated animate__bounceOut"
+        }
     }).then((result) => {
         if (result.isConfirmed) {
             carrito.length = 0
@@ -26,6 +32,15 @@ let carrito = [];
 
 combosDisponibles.addEventListener("click", (e) => {
     if (e.target.classList.contains("agregar")){
+        Toastify({
+                text: "Agregado al carrito 🛒",
+                duration: 2000,
+                gravity: "bottom",
+                style: {
+                    background: "#dc3545",
+                    color: "#fff"
+                }
+            }).showToast()
         validarComboAlCarrito(e.target.id)
     };
 })
