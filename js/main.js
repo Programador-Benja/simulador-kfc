@@ -83,7 +83,7 @@ const actualizarCarrito = () => {
         div.classList.add("dis-flex");
         div.innerHTML = `
         <p class="font-monospace">Combo: ${combo.nombre}</p>
-        <span class="font-monospace">Precio: ${combo.precio}</span>
+        <span class="font-monospace">Precio: $${combo.precio}</span>
         <p class="font-monospace">Cantidad: ${combo.cantidad}</p>
         <button type="button" class="btn btn-danger" onclick="eliminarDelCarrito(${combo.id})">Delete <i class="fa-solid fa-delete-left"></i></button>
         `

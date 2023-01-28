@@ -17,3 +17,38 @@
 #catalogo-combos{
     text-align: center;
 }
+
+.contenedor-carrusel{
+    margin: 20px auto;
+}
+
+.div-promos div{
+    height: 500px;
+}
+.div-promos img{
+    width: 100%;
+    height: 100%;
+}
+.footer{
+    height: 100px;
+    color: white;
+    text-align: center;
+}
+.footer-redes{
+    display: flex;
+    justify-content: center;
+}
+.redes-sociales{
+    display: flex;
+    list-style: none;
+}
+.item-redes{
+    margin: 0 20px;
+}
+.item-redes a{
+    color: white;
+    font-size: 2em;
+}
+.item-redes a:hover{
+    color: rgb(192, 60, 60);
+}
