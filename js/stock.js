@@ -38,7 +38,7 @@ const combos = [
         nombre: "Snacks",
         precio: 900,
         cantidad: 1,
-        img: "/img/snack.jpg",
+        img: "img/snack.jpg",
         descripcion: "TIERNOS BOCADOS DE POLLO EMPANIZADOS CON NUESTRA CRUJIENTE RECETA CRISPY. PEDILA AHORA EN TAMAÑO NORMAL Y GRANDE"
     },
     {
@@ -46,7 +46,7 @@ const combos = [
         nombre: "Alitas",
         precio: 700,
         cantidad: 1,
-        img: "/img/alitas.jpg",
+        img: "img/alitas.jpg",
         descripcion: "CRUJIENTES ALITAS EMPANIZADAS CON NUESTRA RECETA CRISPY. PEDILA AHORA EN TAMAÑO NORMAL Y GRANDE"
     },
     {
@@ -54,7 +54,7 @@ const combos = [
         nombre: "Papas",
         precio: 500,
         cantidad: 1,
-        img: "/img/papas-fritas.jpeg",
+        img: "img/papas-fritas.jpeg",
         descripcion: "NUESTRAS TRADICIONALES PAPAS FRITAS. PEDILA AHORA EN TAMAÑO PEQUEÑO, NORMAL Y GRANDE"
     },
     {
@@ -62,7 +62,7 @@ const combos = [
         nombre: "Puré",
         precio: 850,
         cantidad: 1,
-        img: "/img/pure con gravy.jpg",
+        img: "img/pure con gravy.jpg",
         descripcion: "PURÉ DE PAPAS CON DELICIOSA SALSA GRAVY. PEDILA AHORA EN TAMAÑO PEQUEÑO, NORMAL Y GRANDE"
     }
 ]
