@@ -52,3 +52,33 @@
 .item-redes a:hover{
     color: rgb(192, 60, 60);
 }
+.facturacion{
+    display: flex;
+    background-color: whitesmoke;
+    padding: 30px 2px;
+}
+.facturacion img{
+    width: 35px;
+}
+ul{
+    list-style: none;
+}
+a{
+    color: black;
+}
+.regreso{
+    color: white;
+    text-decoration: none;
+}
+@media(max-width:700px){
+    .facturacion{
+        display: inline-block;
+        width: 100%;
+    }
+    .columna__compras{
+        margin: 0 20px;
+    }
+    .inicio__sesion{
+        display: none;
+    }
+}

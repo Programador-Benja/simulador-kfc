@@ -25,7 +25,7 @@
               </a>
 
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" id="boton-carrito">
                 <i class="fa-solid fa-cart-plus"></i>
                 <span id="contador-carrito">0</span>
               </button>
@@ -85,17 +85,105 @@
     
     <main id="catalogo-combos"></main>
 
+    
+        <!--SECTION / FACTURACION / COMPRAS-->
+        <section class="container facturacion" id="facturacion">
+          <div class="row g-3 container">
+              <div class="mb-3">
+                  <h1>
+                      <strong>INFORMACIÓN DE ENTREGA</strong>
+                  </h1>
+              </div>
+              <div class="col mb-3">
+                <input type="text" class="form-control" placeholder="Nombre *" aria-label="First name">
+              </div>
+              <div class="col mb-3">
+                <input type="text" class="form-control" placeholder="Apellido *" aria-label="Last name">
+              </div>
+              <div class="mb-3">
+                  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Calle *">
+              </div>
+              <div class="col mb-3">
+                  <input type="text" class="form-control" placeholder="Numero *">
+              </div>
+              <div class="col mb-3">
+                  <input type="text" class="form-control" placeholder="Codigo Postal *">
+              </div>
+              <div class="mb-3">
+                  <select class="form-select" aria-label="Default select example">
+                      <option selected><strong>Provincia</strong></option>
+                      <option value="1">Buenos Aires</option>
+                      <option value="2">CABA</option>
+                      <option value="3">Rio Negro</option>
+                      <option value="4">Santa Fe</option>
+                      <option value="5">Entre Rios</option>
+                      <option value="6">Santiago Del Estero</option>
+                      <option value="7">Cordoba</option>
+                      <option value="8">Chubut</option>
+                      <option value="9">Jujuy</option>
+                      <option value="10">Tucuman</option>
+                      <option value="11">Formosa</option>
+                      <option value="12">Tierra Del Fuego</option>
+                    </select>
+              </div>
+              <div class="col mb-3">
+                  <input type="text" class="form-control" placeholder="Localidad *">
+              </div>
+              <div class="mb-3">
+                  <h4>Pais: Argentina</h4>
+              </div>
+              <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                  <label class="form-check-label" for="flexCheckDefault">
+                  La información de facturación y de entrega es la misma.
+                  </label>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                  <label class="form-check-label" for="flexCheckChecked">
+                  Soy mayor de 18 años. *
+                  </label>
+              </div>
+              <div class="mb-3">
+                  <button type="button" class="btn btn-danger btn-lg" id="finalizar-pago">CONTINUAR CON EL PAGO</button>
+              </div>
+          </div>
+          
+          <div>
+              <div class="columna__compras">
+                  <h4>¿Necesitas ayuda?</h4>
+              <ul>
+                  <li><a href="#">¿Puedo devolver mi pedido?</a></li>
+                  <li><a href="#">¿Cómo puedo usar mi descuento?</a></li>
+                  <li><a href="#">Envíos y Plazos de entrega</a></li>
+                  <li><a href="#">Cambios y Devoluciones</a></li>
+              </ul>
+              </div>
+              
+              <div class="columna__compras">
+                  <h4>Opciones de pago</h4>
+                  <div>
+                      <img src="img/medios de pago/Visa-logo.png" alt="visa">
+                      <img src="img/medios de pago/MasterCard_Logo.png" alt="mastercard">
+                      <img src="img/medios de pago/American_Express_logo.png" alt="american express">
+                      <img src="img/medios de pago/pagofacil.png" alt="pago facil">
+                      <img src="img/medios de pago/Rapi-Pago.png" alt="rapipago">
+                  </div>                        
+              </div>
+          </div>
+
+      </section>
     <footer class="bg-dark footer">
       <div class="footer-redes">
         <ul class="redes-sociales">
           <li class="item-redes">
-            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.facebook.com/KFCArgentina/app/137541772984354/"><i class="fa-brands fa-facebook"></i></a>
           </li>
           <li class="item-redes">
-            <a href=""><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.instagram.com/kfc_argentina/"><i class="fa-brands fa-instagram"></i></a>
           </li>
           <li class="item-redes">
-            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://twitter.com/KFC_Argentina"><i class="fa-brands fa-twitter"></i></a>
           </li>
         </ul>
       </div>

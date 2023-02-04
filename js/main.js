@@ -3,6 +3,9 @@ const carritoContenedor = document.getElementById("contenedor-carrito");
 const contadorCarrito = document.getElementById("contador-carrito");
 const totalCompra = document.getElementById("total-dinero");
 const vaciarCarrito = document.getElementById("vaciar-carrito");
+const finalizarCompra = document.getElementById("finalizar-pago");
+
+let carrito = [];
 
 vaciarCarrito.addEventListener("click", () => {
     Swal.fire({
@@ -28,26 +31,58 @@ vaciarCarrito.addEventListener("click", () => {
     })
 })
 
-let carrito = [];
+finalizarCompra.addEventListener("click", () => {
+    Swal.fire({
+        title: "¿Deseas realizar la siguiente compra?",
+        text: "El total es de: " + carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0),
+        imageUrl: "/img/logo2.png",
+        imageHeight: 300,
+        imageAlt: "Logo",
+        showCancelButton: true,
+        confirmButtonColor: "red",
+        cancelButtonColor: "black",
+        confirmButtonText: "Finalizar Compra",
+        cancelButtonText: "Cancelar",
+        showClass: {
+            popup: "animate__animated animate__bounceIn"
+        },
+        hideClass: {
+            popup: "animate__animated animate__bounceOut"
+        }
+    }).then((result) => {
+        if (carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0) > 0){
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Su compra se ha realizado con exito",
+                    confirmButtonColor: "red",
+                    icon: "success",
+                    iconColor: "red"
+                })
+                carrito.length = 0
+                actualizarCarrito()
+            }
+        }
+    })
+})
 
 combosDisponibles.addEventListener("click", (e) => {
     if (e.target.classList.contains("agregar")){
         Toastify({
-                text: "Agregado al carrito 🛒",
-                duration: 2000,
-                gravity: "bottom",
-                style: {
-                    background: "#dc3545",
-                    color: "#fff"
-                }
-            }).showToast()
-        validarComboAlCarrito(e.target.id)
-    };
-})
-
+            text: "Agregado al carrito 🛒",
+            duration: 2000,
+            gravity: "bottom",
+            style: {
+                background: "#dc3545",
+                color: "#fff"
+            }
+        }).showToast()
+            validarComboAlCarrito(e.target.id)
+        };
+    })
+    
 const validarComboAlCarrito = (comboId) => {
     const productoRepetido = carrito.find((combo) => combo.id == comboId)
-
+    
     if (!productoRepetido) { //undefine => false
         const combo = combos.find(combo => combo.id == comboId)
         agregarAlCarrito(combo.id)
@@ -56,21 +91,21 @@ const validarComboAlCarrito = (comboId) => {
         actualizarCarrito()
     }
 }
-
+    
 combos.forEach((combo) => {
     const div = document.createElement("div");
     div.classList.add("dis-flex");
     div.innerHTML = `
-        <div class="card tarjeta">
-            <img src="${combo.img}" class="card-img-top catalogo-img" alt="Imagenes">
-                <div class="card-body">
-                  <h5 class="card-title">${combo.nombre}</h5>
-                  <p class="card-text">${combo.descripcion}</p>
-                    <div class="d-grid gap-2">
-                        <button id="${combo.id}" class="btn btn-danger agregar" type="button">Agregar al carrito <i class="fa-solid fa-cart-plus"></i></button>
-                    </div>
-                </div>
-        </div>
+    <div class="card tarjeta">
+    <img src="${combo.img}" class="card-img-top catalogo-img" alt="Imagenes">
+    <div class="card-body">
+    <h5 class="card-title">${combo.nombre}</h5>
+    <p class="card-text">${combo.descripcion}</p>
+    <div class="d-grid gap-2">
+    <button id="${combo.id}" class="btn btn-danger agregar" type="button">Agregar al carrito <i class="fa-solid fa-cart-plus"></i></button>
+    </div>
+    </div>
+    </div>
     `
     combosDisponibles.appendChild(div);
 })
@@ -122,3 +157,4 @@ document.addEventListener("DOMContentLoaded", () => {
         actualizarCarrito()  
     }
 })
+
