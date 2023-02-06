@@ -4,6 +4,8 @@ const contadorCarrito = document.getElementById("contador-carrito");
 const totalCompra = document.getElementById("total-dinero");
 const vaciarCarrito = document.getElementById("vaciar-carrito");
 const finalizarCompra = document.getElementById("finalizar-pago");
+const nombreCliente = document.getElementById("nombre");
+const apellidoCliente = document.getElementById("apellido");
 
 let carrito = [];
 
@@ -32,37 +34,49 @@ vaciarCarrito.addEventListener("click", () => {
 })
 
 finalizarCompra.addEventListener("click", () => {
-    Swal.fire({
-        title: "¿Deseas realizar la siguiente compra?",
-        text: "El total es de: " + carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0),
-        imageUrl: "/img/logo2.png",
-        imageHeight: 300,
-        imageAlt: "Logo",
-        showCancelButton: true,
-        confirmButtonColor: "red",
-        cancelButtonColor: "black",
-        confirmButtonText: "Finalizar Compra",
-        cancelButtonText: "Cancelar",
-        showClass: {
-            popup: "animate__animated animate__bounceIn"
-        },
-        hideClass: {
-            popup: "animate__animated animate__bounceOut"
-        }
-    }).then((result) => {
-        if (carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0) > 0){
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Su compra se ha realizado con exito",
-                    confirmButtonColor: "red",
-                    icon: "success",
-                    iconColor: "red"
-                })
-                carrito.length = 0
-                actualizarCarrito()
+    if (nombreCliente.value === "" || apellidoCliente.value === "") {
+        Toastify({
+            text: "Faltan datos por completar",
+            duration: 1500,
+            gravity: "top",
+            style: {
+                background: "#dc3545",
+                color: "#fff"
             }
-        }
-    })
+        }).showToast()
+    } else {
+        Swal.fire({
+            title: "¿Deseas realizar la siguiente compra?",
+            text: "El total es de: " + carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0),
+            imageUrl: "/img/logo2.png",
+            imageHeight: 300,
+            imageAlt: "Logo",
+            showCancelButton: true,
+            confirmButtonColor: "red",
+            cancelButtonColor: "black",
+            confirmButtonText: "Finalizar Compra",
+            cancelButtonText: "Cancelar",
+            showClass: {
+                popup: "animate__animated animate__bounceIn"
+            },
+            hideClass: {
+                popup: "animate__animated animate__bounceOut"
+            }
+        }).then((result) => {
+            if (carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0) > 0){
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Su compra se ha realizado con exito",
+                        confirmButtonColor: "red",
+                        icon: "success",
+                        iconColor: "red"
+                    })
+                    carrito.length = 0
+                    actualizarCarrito()
+                }
+            }
+        }) 
+    }
 })
 
 combosDisponibles.addEventListener("click", (e) => {
@@ -91,7 +105,7 @@ const validarComboAlCarrito = (comboId) => {
         actualizarCarrito()
     }
 }
-    
+
 combos.forEach((combo) => {
     const div = document.createElement("div");
     div.classList.add("dis-flex");
