@@ -7,7 +7,7 @@ const combos = [
         precio: 1500,
         cantidad: 1,
         img: "img/bucket.jpg",
-        descripcion: "8 PIEZAS DE POLLO. ELEGÍ NUESTRA TRADICIONAL RECETA ORIGINAL Y/O LA CRUJIENTE RECETA CRISPY"
+        descripcion: "8 piezas de pollo. Elige nuestra tradicional receta original y/o la crujiente receta crispy."
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ const combos = [
         precio: 1200,
         cantidad: 1,
         img: "img/box.jpg",
-        descripcion: "1 SUPER CRUNCH, 1 POPCORN SHAKER CHICO + SALSA, 2 ALITAS. INCLUYE PAPAS Y GASEOSA MEDIANAS."
+        descripcion: "1 Super Crunch, 1 Popcorn Shaker chico + salsa, 2 alitas. Incluye papas y gaseosa medianas."
     },
     {
         id: 3,
@@ -23,7 +23,7 @@ const combos = [
         precio: 1000,
         cantidad: 1,
         img: "img/sandwitch.jpg",
-        descripcion: "SANDWICH DE POLLO CRISPY CON LECHUGA, TOMATE, BACON, SALSA BBQ, QUESO Y PAN BRIOCHE."
+        descripcion: "Sándwich de pollo crispy con lechuga, tomate, bacon, salsa BBQ, queso y pan brioche."
     },
     {
         id: 4,
@@ -31,7 +31,7 @@ const combos = [
         precio: 800,
         cantidad: 1,
         img: "img/postres.jpg",
-        descripcion: "TURRÓN CON MANÍ O CHOCOLATES, COMBINADA CON TU SALSA FAVORITA DE DULCE DE LECHE, CHOCOLATE O FRUTILLA."
+        descripcion: "Turrón con maní o chocolates, combinada con tu salsa favorita de dulce de leche, chocolate o frutilla."
     },
     {
         id: 5,
@@ -39,7 +39,7 @@ const combos = [
         precio: 900,
         cantidad: 1,
         img: "img/snack.jpg",
-        descripcion: "TIERNOS BOCADOS DE POLLO EMPANIZADOS CON NUESTRA CRUJIENTE RECETA CRISPY. PEDILA AHORA EN TAMAÑO NORMAL Y GRANDE"
+        descripcion: "Tiernos bocados de pollo empanizados con nuestra crujiente receta crispy. Pídela ahora en tamaño normal y grande."
     },
     {
         id: 6,
@@ -47,7 +47,7 @@ const combos = [
         precio: 700,
         cantidad: 1,
         img: "img/alitas.jpg",
-        descripcion: "CRUJIENTES ALITAS EMPANIZADAS CON NUESTRA RECETA CRISPY. PEDILA AHORA EN TAMAÑO NORMAL Y GRANDE"
+        descripcion: "Crujientes alitas empanizadas con nuestra receta crispy. Pídela ahora en tamaño normal y grande."
     },
     {
         id: 7,
@@ -55,7 +55,7 @@ const combos = [
         precio: 500,
         cantidad: 1,
         img: "img/papas-fritas.jpeg",
-        descripcion: "NUESTRAS TRADICIONALES PAPAS FRITAS. PEDILA AHORA EN TAMAÑO PEQUEÑO, NORMAL Y GRANDE"
+        descripcion: "Nuestras tradicionales papas fritas. Pídela ahora en tamaño pequeño, normal y grande."
     },
     {
         id: 8,
@@ -63,6 +63,6 @@ const combos = [
         precio: 850,
         cantidad: 1,
         img: "img/pure con gravy.jpg",
-        descripcion: "PURÉ DE PAPAS CON DELICIOSA SALSA GRAVY. PEDILA AHORA EN TAMAÑO PEQUEÑO, NORMAL Y GRANDE"
+        descripcion: "Puré de papas con deliciosa salsa gravy. Pídela ahora en tamaño pequeño, normal y grande."
     }
 ]

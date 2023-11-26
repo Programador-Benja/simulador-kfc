@@ -1,14 +1,41 @@
 .tarjeta{
     margin: auto;
-    width: 400px;
+    max-width: 400px;
+    height: 600px;
 }
 .catalogo-img{
     width: 100%;
     height: 400px;
 }
+.combos-descripcion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .dis-flex{
     display: inline-flex;
-    margin: 20px 2px;
+    margin: 20px 5px;
+}
+/* .carrito-container{
+    max-width: 500px;    
+} */
+.carrito-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width: 500px){
+    .carrito-flex{
+        display: block;
+        text-align: center;
+    }
+    .elemento{
+        width: 100%;
+    }
+}
+.linea-division hr{
+    border: 1px solid #808080;
 }
 .dis-flex p, .dis-flex span{
     display: flex;

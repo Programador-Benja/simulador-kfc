@@ -36,7 +36,7 @@ vaciarCarrito.addEventListener("click", () => {
 finalizarCompra.addEventListener("click", () => {
     if (nombreCliente.value === "" || apellidoCliente.value === "") {
         Toastify({
-            text: "Faltan datos por completar",
+            text: "Faltan datos por completar ⚠️",
             duration: 1500,
             gravity: "top",
             style: {
@@ -111,14 +111,14 @@ combos.forEach((combo) => {
     div.classList.add("dis-flex");
     div.innerHTML = `
     <div class="card tarjeta">
-    <img src="${combo.img}" class="card-img-top catalogo-img" alt="Imagenes">
-    <div class="card-body">
-    <h5 class="card-title">${combo.nombre}</h5>
-    <p class="card-text">${combo.descripcion}</p>
-    <div class="d-grid gap-2">
-    <button id="${combo.id}" class="btn btn-danger agregar" type="button">Agregar al carrito <i class="fa-solid fa-cart-plus"></i></button>
-    </div>
-    </div>
+        <img src="${combo.img}" class="card-img-top catalogo-img" alt="Imagenes">
+        <div class="card-body combos-descripcion">
+            <h5 class="card-title">${combo.nombre}</h5>
+            <p class="card-text">${combo.descripcion}</p>
+                <div class="d-grid gap-2">
+                    <button id="${combo.id}" class="btn btn-danger agregar" type="button">Agregar al carrito <i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+        </div>
     </div>
     `
     combosDisponibles.appendChild(div);
@@ -129,15 +129,21 @@ const actualizarCarrito = () => {
     
     carrito.forEach((combo) => {
         const div = document.createElement("div");
-        div.classList.add("dis-flex");
+        div.classList.add("carrito-container");
         div.innerHTML = `
-        <p class="font-monospace">Combo: ${combo.nombre}</p>
-        <span class="font-monospace">Precio: $${combo.precio}</span>
-        <p class="font-monospace">Cantidad: ${combo.cantidad}</p>
-        <button type="button" class="btn btn-danger" onclick="eliminarDelCarrito(${combo.id})">Delete <i class="fa-solid fa-delete-left"></i></button>
+        <div class="carrito-flex">
+            <p class="font-monospace elemento">Combo: ${combo.nombre}</p>
+            <p class="font-monospace elemento">Precio: $${combo.precio}</p>
+            <p class="font-monospace elemento">Cantidad: ${combo.cantidad}</p>
+            <button type="button" class="btn btn-danger elemento" onclick="eliminarDelCarrito(${combo.id})">Delete <i class="fa-solid fa-delete-left"></i></button>
+        </div>
+        <div class="linea-division">
+            <hr>
+        </div>
         `
         carritoContenedor.appendChild(div)
     })
+
     contadorCarrito.innerHTML = carrito.length;
     totalCompra.innerHTML = carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0)
     guardarCarritoStorage(carrito)
