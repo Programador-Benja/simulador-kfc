@@ -67,7 +67,6 @@
 }
 .redes-sociales{
     display: flex;
-    list-style: none;
 }
 .item-redes{
     margin: 0 20px;
