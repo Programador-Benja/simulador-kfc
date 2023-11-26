@@ -48,7 +48,7 @@ finalizarCompra.addEventListener("click", () => {
         Swal.fire({
             title: "¿Deseas realizar la siguiente compra?",
             text: "El total es de: " + carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0),
-            imageUrl: "/img/logo2.png",
+            imageUrl: "../img/logo2.png",
             imageHeight: 300,
             imageAlt: "Logo",
             showCancelButton: true,
