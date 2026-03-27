@@ -1,4 +1,4 @@
-**# 🍗 KFC Argentina - Simulador de Pedidos
+🍗 KFC Argentina - Simulador de Pedidos
 
 Aplicación web interactiva que simula el proceso de compra en KFC, permitiendo a los usuarios seleccionar combos, gestionar un carrito y realizar un checkout con persistencia de datos.
 
