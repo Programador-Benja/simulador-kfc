@@ -3,11 +3,25 @@ const carritoContenedor = document.getElementById("contenedor-carrito");
 const contadorCarrito = document.getElementById("contador-carrito");
 const totalCompra = document.getElementById("total-dinero");
 const vaciarCarrito = document.getElementById("vaciar-carrito");
-const finalizarCompra = document.getElementById("finalizar-pago");
-const nombreCliente = document.getElementById("nombre");
-const apellidoCliente = document.getElementById("apellido");
+const contenedorTotal = document.getElementById("contenedor-total");
+const btnPagar = document.getElementById("btn-pagar");
+const totalPago = document.getElementById("total-pago");
+const confirmarPago = document.getElementById("confirmar-pago");
+const errorPago = document.getElementById("error-pago");
+const loader = document.getElementById("loader");
+const cardNumber = document.getElementById("card-number");
+const cardName = document.getElementById("card-name");
+const cardDate = document.getElementById("card-date");
+const cardCVV = document.getElementById("card-cvv");
 
 let carrito = [];
+
+cardNumber.addEventListener("input", () => {
+    cardNumber.value = cardNumber.value
+        .replace(/\D/g, "")
+        .replace(/(.{4})/g, "$1 ")
+        .trim();
+});
 
 vaciarCarrito.addEventListener("click", () => {
     Swal.fire({
@@ -29,54 +43,17 @@ vaciarCarrito.addEventListener("click", () => {
         if (result.isConfirmed) {
             carrito.length = 0
             actualizarCarrito()
+            // 🔥 ALERTA DE ÉXITO
+            Swal.fire({
+                title: "Carrito vaciado 🛒",
+                text: "Todos los productos fueron eliminados correctamente",
+                icon: "success",
+                confirmButtonColor: "green",
+                timer: 1500,
+                showConfirmButton: false
+            });
         }
     })
-})
-
-finalizarCompra.addEventListener("click", () => {
-    if (nombreCliente.value === "" || apellidoCliente.value === "") {
-        Toastify({
-            text: "Faltan datos por completar ⚠️",
-            duration: 1500,
-            gravity: "top",
-            style: {
-                background: "#dc3545",
-                color: "#fff"
-            }
-        }).showToast()
-    } else {
-        Swal.fire({
-            title: "¿Deseas realizar la siguiente compra?",
-            text: "El total es de: " + carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0),
-            imageUrl: "img/logo2.png",
-            imageHeight: 300,
-            imageAlt: "Logo",
-            showCancelButton: true,
-            confirmButtonColor: "red",
-            cancelButtonColor: "black",
-            confirmButtonText: "Finalizar Compra",
-            cancelButtonText: "Cancelar",
-            showClass: {
-                popup: "animate__animated animate__bounceIn"
-            },
-            hideClass: {
-                popup: "animate__animated animate__bounceOut"
-            }
-        }).then((result) => {
-            if (carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0) > 0){
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Su compra se ha realizado con exito",
-                        confirmButtonColor: "red",
-                        icon: "success",
-                        iconColor: "red"
-                    })
-                    carrito.length = 0
-                    actualizarCarrito()
-                }
-            }
-        }) 
-    }
 })
 
 combosDisponibles.addEventListener("click", (e) => {
@@ -125,29 +102,68 @@ combos.forEach((combo) => {
 })
 
 const actualizarCarrito = () => {
-    carritoContenedor.innerHTML= "";
-    
+    carritoContenedor.innerHTML = "";
+
+    const fragment = document.createDocumentFragment();
+
     carrito.forEach((combo) => {
         const div = document.createElement("div");
         div.classList.add("carrito-container");
-        div.innerHTML = `
-        <div class="carrito-flex">
-            <p class="font-monospace elemento">Combo: ${combo.nombre}</p>
-            <p class="font-monospace elemento">Precio: $${combo.precio}</p>
-            <p class="font-monospace elemento">Cantidad: ${combo.cantidad}</p>
-            <button type="button" class="btn btn-danger elemento" onclick="eliminarDelCarrito(${combo.id})">Delete <i class="fa-solid fa-delete-left"></i></button>
-        </div>
-        <div class="linea-division">
-            <hr>
-        </div>
-        `
-        carritoContenedor.appendChild(div)
-    })
 
-    contadorCarrito.innerHTML = carrito.length;
-    totalCompra.innerHTML = carrito.reduce((acc, combo) => acc + (combo.precio * combo.cantidad), 0)
-    guardarCarritoStorage(carrito)
-}
+        div.innerHTML = `
+            <div class="carrito-flex d-flex justify-content-between align-items-center">
+                
+                <div>
+                    <p class="mb-1"><strong>${combo.nombre}</strong></p>
+                    <small>Precio: $${combo.precio}</small><br>
+                    <small>Cantidad: ${combo.cantidad}</small>
+                </div>
+
+                <button 
+                    class="btn btn-danger btn-sm eliminar"
+                    data-id="${combo.id}">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+
+            </div>
+            <hr>
+        `;
+
+        fragment.appendChild(div);
+
+        
+    });
+
+    if (carrito.length === 0) {
+        carritoContenedor.innerHTML = `
+            <p class="text-center">🛒 Tu carrito está vacío</p>
+            <p class="text-center text-muted">Agregá combos para comenzar tu pedido</p>
+        `;
+        contenedorTotal.style.display = "none";
+    } else {
+    contenedorTotal.style.display = "block";
+    }
+
+    carritoContenedor.appendChild(fragment);
+    // Contador (mejor: total de items, no length)
+    const totalItems = carrito.reduce((acc, c) => acc + c.cantidad, 0);
+    contadorCarrito.innerText = totalItems;
+
+    // Total $
+    const total = carrito.reduce((acc, c) => acc + (c.precio * c.cantidad), 0);
+    totalCompra.innerText = total;
+
+    guardarCarritoStorage(carrito);
+    toggleBotonPagar();
+    toggleBotonVaciar();
+};
+
+carritoContenedor.addEventListener("click", (e) => {
+    if (e.target.closest(".eliminar")) {
+        const id = e.target.closest(".eliminar").dataset.id;
+        eliminarDelCarrito(id);
+    }
+});
 
 const agregarAlCarrito = (comboId) =>{
     const item = combos.find((combo) => combo.id === comboId);
@@ -156,11 +172,16 @@ const agregarAlCarrito = (comboId) =>{
 }
 
 const eliminarDelCarrito = (comboEliminar) => {
-    const item = carrito.find((combo) => combo.id === comboEliminar);
-    const indice = carrito.indexOf(item)
-    carrito.splice(indice,1)
-    actualizarCarrito()
-}
+    const item = carrito.find((combo) => combo.id == comboEliminar);
+
+    if (item.cantidad > 1) {
+        item.cantidad--;
+    } else {
+        carrito = carrito.filter((combo) => combo.id != comboEliminar);
+    }
+
+    actualizarCarrito();
+};
 
 const guardarCarritoStorage = (carrito) => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
@@ -178,3 +199,68 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 })
 
+// Activar/desactivar botón pagar
+const toggleBotonPagar = () => {
+    btnPagar.disabled = carrito.length === 0;
+};
+
+// Activar/desactivar botón vaciar
+const toggleBotonVaciar = () => {
+    vaciarCarrito.disabled = carrito.length === 0;
+};
+
+// Actualizar total en modal
+btnPagar.addEventListener("click", () => {
+    const total = carrito.reduce((acc, c) => acc + (c.precio * c.cantidad), 0);
+    totalPago.innerText = total;
+});
+
+// Validación simple
+const validarPago = () => {
+    if (cardNumber.value.length !== 16) return "Número de tarjeta inválido";
+    if (cardName.value.trim() === "") return "Nombre requerido";
+    if (!cardDate.value.includes("/")) return "Fecha inválida";
+    if (cardCVV.value.length < 3) return "CVV inválido";
+    return null;
+};
+
+// Confirmar pago
+confirmarPago.addEventListener("click", () => {
+    errorPago.style.display = "none";
+
+    const error = validarPago();
+
+    if (error) {
+        errorPago.innerText = error;
+        errorPago.style.display = "block";
+        return;
+    }
+
+    // Mostrar loader
+    loader.style.display = "block";
+
+    setTimeout(() => {
+        loader.style.display = "none";
+
+        Swal.fire({
+            title: "Pago aprobado ✅",
+            text: "Tu pedido está en camino 🍗",
+            icon: "success",
+            confirmButtonColor: "green"
+        });
+
+        carrito.length = 0;
+        actualizarCarrito();
+        toggleBotonPagar();
+
+        // Reset inputs
+        cardNumber.value = "";
+        cardName.value = "";
+        cardDate.value = "";
+        cardCVV.value = "";
+
+        const modal = bootstrap.Modal.getInstance(document.getElementById("modalPago"));
+        modal.hide();
+
+    }, 2000);
+});
