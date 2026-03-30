@@ -16,13 +16,6 @@ const cardCVV = document.getElementById("card-cvv");
 
 let carrito = [];
 
-cardNumber.addEventListener("input", () => {
-    cardNumber.value = cardNumber.value
-        .replace(/\D/g, "")
-        .replace(/(.{4})/g, "$1 ")
-        .trim();
-});
-
 vaciarCarrito.addEventListener("click", () => {
     Swal.fire({
         title: "Estas seguro que deseas vaciar el carrito",
